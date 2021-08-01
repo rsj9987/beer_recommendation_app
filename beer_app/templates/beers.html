@@ -1,6 +1,25 @@
 {% extends 'layout.html' %}
     {% block content %}
         <!-- Main Content-->
+        <form method="post" action="/beers">
+          <center>
+          <h2>찾고 싶은 맥주를 검색해보세요!</h2>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="check_query" id="inlineRadio1" value="1" checked>
+            <label class="form-check-label" for="inlineRadio1">이름</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="check_query" id="inlineRadio2" value="2">
+          <label class="form-check-label" for="inlineRadio2">종류</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="check_query" id="inlineRadio3" value="3">
+        <label class="form-check-label" for="inlineRadio3">나라</label>
+    </div>
+          <input name="search" style="margin-bottom:10px" class="form-control" type="text" placeholder="검색">
+          <input type="submit" class="btn btn-primary" value="찾기"/>
+          </center>
+        </form>
         <main class="mb-4">
           {% if beer_list %}
           <table class="table">

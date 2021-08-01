@@ -19,7 +19,17 @@ class Beer(db.Model):
         return f"Beer {self.id} (Name : {self.name}, types : {self.types})"
 
 
-def get_beer_list():
+def get_beer_list(search=None, check_query=None):
+    if search is not None:
+        search = f"%{search}%"
+        if check_query == 1:
+            return Beer.query.filter(Beer.name.like(search)).all()
+        elif check_query == 2:
+            return Beer.query.filter(Beer.types.like(search)).all()
+        elif check_query == 3:
+            country = Country.query.filter(Country.name.like(search)).first()
+            return country.beers
+
     return Beer.query.all()
 
 def add_beer(name, types, alcohol, taste, comment, image_url, country_id):

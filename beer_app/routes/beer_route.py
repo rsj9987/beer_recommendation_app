@@ -5,12 +5,19 @@ from beer_app.services.zero_transform import zero_to_none
 bp = Blueprint('beer', __name__)
 
 
-@bp.route('/beers')
+@bp.route('/beers', methods=['GET', 'POST'])
 def beer_index():
     title = "고그시 맥주"
     sub_title = "어떤 맥주들이 있는지 확인해보세요"
-    beer_list = get_beer_list()
-
+    if request.method == 'POST':
+        search = zero_to_none(request.form.get('search'))
+        check_query = request.form.get('check_query', type=int)
+        try:
+            beer_list = get_beer_list(check_query=check_query, search=search)
+        except:
+            beer_list = get_beer_list()
+    else:
+        beer_list = get_beer_list()
     return render_template('beers.html', beer_list=beer_list, title=title, sub_title=sub_title)
 
 

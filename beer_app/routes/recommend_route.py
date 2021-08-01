@@ -8,6 +8,8 @@ bp = Blueprint('recommend', __name__)
 
 @bp.route('/recommend', methods=['GET', 'POST'])
 def recommend_index():
+    title = "고그시 맥주 추천"
+    sub_title = "맥주의 종류와 잘 맞는 안주를 추천받아보세요!"
     check_body = None
     fruit = None
     bitter = None
@@ -48,5 +50,5 @@ def recommend_index():
             for b in beer_3:
                 if b in result:
                     food = 3
-    return render_template('recommend.html', check_body=check_body, beer_list=beer_list, food=food)
+    return render_template('recommend.html', title=title, sub_title=sub_title, check_body=check_body, beer_list=beer_list, food=food)
 
