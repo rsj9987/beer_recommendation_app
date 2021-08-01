@@ -1,1 +1,1 @@
-web: gunicorn --workers=4 beer_app:create_app()'
+web: gunicorn --workers=4 'beer_app:create_app()'
