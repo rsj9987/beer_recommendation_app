@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+    {% block content %}
+        <!-- Main Content-->
+        <main class="mb-4">
+          {% if beer_list %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">이미지</th>
+                <th scope="col">맥주이름</th>
+                <th scope="col">맥주종류</th>
+                <th scope="col">제조국</th>
+                <th scope="col">도수</th>
+                <th scope="col">맛</th>
+                <th scope="col">특징</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for beer in beer_list %}
+              <tr>
+                  <th scope="row"><img src={{ beer.image_url }} width="150" height="150"></th>
+                  <td>{{ beer.name }}</td>
+                  <td>{{ beer.types }}</td>
+                  <td>{{ beer.country.name }}</td>
+                  <td>{{ beer.alcohol }}</td>
+                  <td>{{ beer.taste }}</td>
+                  <td>{{ beer.comment }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% endif %}   
+        </main>
+    {% endblock content %}

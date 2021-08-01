@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+    {% block content %}
+        <form method="POST" action="/warehouse">
+            <center>
+            <a>맥주이름을 입력해주세요.</a>
+            <input name="beername" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주이름 입력">
+            <a>맥주의 종류를 입력해주세요.</a>
+            <input name="beer_types" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주의 종류 입력">
+            <a>맥주제조국을 입력해주세요.</a>
+            <input name="beer_madeby" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주의 제조국 입력">
+            <a>맥주의 도수를 입력해주세요.</a>
+            <input name="beer_alcohol" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주도수 입력">
+            <a>맥주의 맛을 입력해주세요.</a>
+            <input name="beer_taste" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주 맛 입력">
+            <a>맥주의 특징을 입력해주세요.</a>
+            <input name="beer_comment" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주의 특징 입력">
+            <a>맥주의 이미지 주소를 입력해주세요.</a>
+            <input name="beer_image" style="margin-bottom:10px" class="form-control" type="text" placeholder="맥주의 사진 URL 입력">
+            <input type="submit" class="btn btn-primary" value="Add&Update"/>
+            </center>
+        </form>
+        <!-- Main Content-->
+        <main class="mb-4">
+            {% if beer_list %}
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">이미지</th>
+                  <th scope="col">맥주이름</th>
+                  <th scope="col">맥주종류</th>
+                  <th scope="col">제조국</th>
+                  <th scope="col">도수</th>
+                  <th scope="col">맛</th>
+                  <th scope="col">특징</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for beer in beer_list %}
+                <tr>
+                    <th scope="row"><img src={{ beer.image_url }} width="150" height="150"></th>
+                    <td>{{ beer.name }}</td>
+                    <td>{{ beer.types }}</td>
+                    <td>{{ beer.country.name }}</td>
+                    <td>{{ beer.alcohol }}</td>
+                    <td>{{ beer.taste }}</td>
+                    <td>{{ beer.comment }}</td>
+                    <td>
+                        <a class="btn btn-secondary", href='/warehouse/{{ beer.id }}'>
+                            Delete
+                        </a>
+                    </td>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% endif %}   
+        </main>
+    {% endblock content %}
+         
