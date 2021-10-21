@@ -1,181 +1,16 @@
 {% extends 'layout.html' %}
     <!-- Main Content-->
     {% block content %}
-        {% if beer_list == None %}
-            {% if check_body == None %}
-                <form method="post" action="/recommend">
-                    <ul>
-                        <h2>맥주의 바디타입을 선택해 주세요.</h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_body_type" id="inlineRadio1" value="1">
-                                <label class="form-check-label" for="inlineRadio1">가볍고 청량한 맛</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_body_type" id="inlineRadio2" value="2">
-                                <label class="form-check-label" for="inlineRadio2">가볍지도 무겁지도 않은 맛</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_body_type" id="inlineRadio3" value="3">
-                                <label class="form-check-label" for="inlineRadio2">깊고 진한 맛</label>
-                            </div>
-                        </li>   
-                    </ul>
-                    <br>
-                    &emsp;&emsp;<input type="submit" class="btn btn-primary" value="다음"/>
-                </form>
-            {% elif check_body == 1 %}
-                <form method="post" action="/recommend">
-                    <ul>
-                        <h2>과일향을 선호하시나요?&emsp;<a class="btn btn-primary", href='/recommend'>
-                            되돌아가기
-                        </a></h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_fruit" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_fruit" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <br>
-                    &emsp;&emsp;<input type="submit" class="btn btn-primary" value="제출"/>
-                </form>
-                {% elif check_body == 2 %}
-                <form method="post" action="/recommend">
-                    <ul>
-                        <h2>쓴맛을 선호하시나요?&emsp;<a class="btn btn-primary", href='/recommend'>
-                            되돌아가기
-                        </a></h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_bitter" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_bitter" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <ul>
-                        <h2>쌉싸래한 느낌을 선호하시나요?</h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_hoppy" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_hoppy" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <ul>
-                        <h2>단맛을 선호하시나요?</h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_sweet" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_sweet" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <br>
-                    &emsp;&emsp;<input type="submit" class="btn btn-primary" value="제출"/>
-                </form>
-                {% elif check_body == 3 %}
-                <form method="post" action="/recommend">
-                    <ul>
-                        <h2>도수가 높은 맥주를 선호하시나요?&emsp;<a class="btn btn-primary", href='/recommend'>
-                            되돌아가기
-                        </a></h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_high_alcohol" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_high_alcohol" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <ul>
-                        <h2>맥아향(구수한 향)이 나는 것을 선호하시나요?</h2>
-                        <br><br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_malty" id="inlineRadio10" value="1">
-                                <label class="form-check-label" for="inlineRadio10">예</label>
-                            </div>
-                        </li>
-                        <br>
-                        <li>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="check_malty" id="inlineRadio11" value="2">
-                                <label class="form-check-label" for="inlineRadio11">아니오</label>
-                            </div>
-                        </li>  
-                    </ul>
-                    <br>
-                    &emsp;&emsp;<input type="submit" class="btn btn-primary" value="제출"/>
-                </form>
-            {% endif %}
+        {% if beer_list == None and text == None %}
+            <form method="post" action="/recommend">
+                <input name="name" style="margin-bottom:10px" class="form-control" type="text" placeholder="검색">
+                <input type="submit" class="btn btn-primary" value="찾기"/>
+            </form>
         {% endif %}
         {% if beer_list %}
-            <h2>좋아하실만한 맥주들을 가져와봤어요!&emsp;<a class="btn btn-primary", href='/recommend'>
+            <h2>선호하시는 맥주와 비슷한 맥주 3가지에요!&emsp;<a class="btn btn-primary", href='/recommend'>
                 다시하기
             </a></h2>
-            <h3>이런 안주와 함께 드시면 더 좋아요!</h3>
-            {% if food == 1 %}
-                <img src="../static/img/nacho.jpg" height=300 width=300>
-                <img src="../static/img/sushi.jpg" height=300 width=300>
-                <img src="../static/img/salad.jpg" height=300 width=300>
-            {% endif %}
-            {% if food == 2 %}
-                <img src="../static/img/sausage.jpg" height=300 width=300>
-                <img src="../static/img/hamburger.jpg" height=300 width=300>
-                <img src="../static/img/pizza.jpg" height=300 width=300>
-            {% endif %}
-            {% if food == 3 %}
-                <img src="../static/img/steak.jpg" height=300 width=300>
-                <img src="../static/img/jokbal.jpg" height=300 width=300>
-                <img src="../static/img/bbq.jpg" height=300 width=300>
-            {% endif %}
             <table class="table">
                 <thead>
                     <tr>
@@ -202,5 +37,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+        {% elif text %}
+            <h2>{{text}}&emsp;<a class="btn btn-primary", href='/recommend'>
+                    다시하기
+            </a></h2>
         {% endif %}
     {% endblock content %}

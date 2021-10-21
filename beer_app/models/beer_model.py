@@ -55,7 +55,7 @@ def add_update_beer(beer_name, beer_types, beer_country, beer_alcohol, beer_tast
                 add_country(beer_country)
                 ctr_id = Country.query.filter_by(name=beer_country).first()
                 ctr_id = ctr_id.id
-                Beer_from_db.country_id = ctr_id
+                beer_from_db.country_id = ctr_id
         if beer_alcohol is not None:
             beer_from_db.types = beer_alcohol
         if beer_taste is not None:
@@ -75,7 +75,7 @@ def add_update_beer(beer_name, beer_types, beer_country, beer_alcohol, beer_tast
                     beer_comment, beer_image_url, ctr_id)
 
 def get_recommend_beer(result):
-    if type(result) == list:
-        return Beer.query.filter(Beer.types.like(f'%{result[0]}%') | Beer.types.like(f'%{result[1]}%')).all()
-    else:
-        return Beer.query.filter(Beer.types.like(f'%{result}%')).all()
+    beers = []
+    for name in result:
+        beers.append(Beer.query.filter(Beer.name.like(f'%{name}%')).first())
+    return beers
