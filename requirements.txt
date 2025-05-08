@@ -9,7 +9,7 @@ click==8.0.1
 colorama==0.4.4
 cycler==0.10.0
 cymem==2.0.5
-Flask==2.0.1
+flask>=2.2.5
 Flask-Migrate==3.0.1
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.0
