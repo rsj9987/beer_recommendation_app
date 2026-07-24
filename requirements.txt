@@ -51,7 +51,7 @@ srsly==2.4.1
 tenacity==8.0.1
 thinc==8.0.10
 threadpoolctl==3.0.0
-tqdm==4.62.3
+tqdm>=4.66.3
 typer==0.4.0
 typing-extensions==3.10.0.2
 urllib3>=1.26.19
